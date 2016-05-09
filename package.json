@@ -1,0 +1,33 @@
+{
+  "name": "crowd-source",
+  "version": "1.0.0",
+  "description": "web sockets",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jlawlzz/real-time.git"
+  },
+  "keywords": [
+    "websockets"
+  ],
+  "author": "jordan lawler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jlawlzz/real-time/issues"
+  },
+  "homepage": "https://github.com/Jlawlzz/real-time#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "lodash": "^4.11.1",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
+  }
+}
