@@ -14,52 +14,52 @@
 
   <div id="new-poll-form">
 
-    <div class="row center">
-      <form action="/admin" method="POST" name="survey" id="survey-form">
-        <div class="row">
-          <div class="input-field">
-            <label for="survey[question]">Question</label>
-            <input name="survey[question]" type="text">
-          </div>
-        </div>
-        <div id="options-list">
-          <div class="row" >
-            <div class="input-field">
-              <label for="survey[options][]">Option 1</label>
-              <input name="survey[options][]" type="text">
-            </div>
-          </div>
+      <div class="row center">
+        <form action="/admin" method="POST" name="survey" id="survey-form" class="col s6 offset-s3">
           <div class="row">
             <div class="input-field">
-              <label for="survey[options][]">Option 2</label>
-              <input name="survey[options][]" type="text">
+              <label for="survey[question]">Question</label>
+              <input name="survey[question]" type="text">
             </div>
           </div>
-          <div class="row">
-            <div class="input-field">
-              <label for="survey[options][]">Option 3</label>
-              <input name="survey[options][]" type="text">
+          <div class="options-list">
+            <div class="row">
+              <div class="input-field">
+                <label for="survey[options][]">Option 1</label>
+                <input name="survey[options][]" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <label for="survey[options][]">Option 2</label>
+                <input name="survey[options][]" type="text">
+              </div>
+            <div class="row">
+              <div class="input-field">
+                <label for="survey[options][]">Option 3</label>
+                <input name="survey[options][]" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <label for="survey[options][]">Option 4</label>
+                <input name="survey[options][]" type="text">
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field">
-              <label for="survey[options][]">Option 4</label>
-              <input name="survey[options][]" type="text">
+          <button type="button" onClick="addOption()" class="btn" id="add-option">Add Option</button>
+          <br><br>
+          <div class='row'>
+            <div>
+              <label for="survey[time]">Optional Expiration Timer</label>
+              <input name="survey[time]" type="number" min="0" placeholder="Closes in # minutes (optional)">
             </div>
+
           </div>
-        </div>
-        <button type="button" class="btn" id="add-option">Add Option</button>
-        <br><br>
-        <div class='row'>
-          <div>
-            <label for="survey[time]">Do you want this to expire?</label>
-            <input name="survey[time]" type="number" min="0" placeholder="Minutes for participants to take">
-          </div>
-        </div>
+          <input type="submit" class="btn">
+        </form>
       </div>
-      <input type="submit" class="btn">
-    </form>
-  </div>
+
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
