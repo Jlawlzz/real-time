@@ -53,4 +53,8 @@ app.get('/vote', function (req, res){
   res.render('index');
 });
 
+app.post('/admin', function (req, res) {
+  console.log(res)
+});
+
 module.exports = server;

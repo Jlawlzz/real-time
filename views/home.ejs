@@ -1,68 +1,70 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Ask the Audience</title>
-  </head>
-  <body>
-      <div class='app-window'>
-        <div class="title">
-          <h1>Ask the Audience</h1>
+<head>
+  <title>Ask the Audience</title>
+</head>
+<body>
+  <div class='app-window'>
+    <div class="title">
+      <h1>Ask the Audience</h1>
+    </div>
+  </br>
+
+  <button class="btn large" id="create-poll"> Create a Pole </button>
+
+  <div id="new-poll-form">
+
+    <div class="row center">
+      <form action="/admin" method="POST" name="survey" id="survey-form">
+        <div class="row">
+          <div class="input-field">
+            <label for="survey[question]">Question</label>
+            <input name="survey[question]" type="text">
+          </div>
         </div>
-        </br>
-
-        <button class="btn large" id="create-poll"> Create a Pole </button>
-
-        <div id="new-poll-form">
-
-          <div class="row center">
-        <form action="/admin" method="POST" name="survey" id="survey-form">
+        <div id="options-list">
+          <div class="row" >
+            <div class="input-field">
+              <label for="survey[options][]">Option 1</label>
+              <input name="survey[options][]" type="text">
+            </div>
+          </div>
           <div class="row">
             <div class="input-field">
-              <label for="survey[question]">Question</label>
-              <input name="survey[question]" type="text">
+              <label for="survey[options][]">Option 2</label>
+              <input name="survey[options][]" type="text">
             </div>
           </div>
-          <div id="options-list">
-            <div class="row" >
-              <div class="input-field">
-                <label for="survey[options][]">Option 1</label>
-                <input name="survey[options][]" type="text">
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <label for="survey[options][]">Option 2</label>
-                <input name="survey[options][]" type="text">
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <label for="survey[options][]">Option 3</label>
-                <input name="survey[options][]" type="text">
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <label for="survey[options][]">Option 4</label>
-                <input name="survey[options][]" type="text">
-              </div>
+          <div class="row">
+            <div class="input-field">
+              <label for="survey[options][]">Option 3</label>
+              <input name="survey[options][]" type="text">
             </div>
           </div>
-          <button type="button" class="btn" id="add-option">Add Option</button>
-          <br><br>
-          <div class='row'>
-            <div>
-              <label for="survey[time]">Optional Expiration Timer</label>
-              <input name="survey[time]" type="number" min="0" placeholder="Closes in # minutes (optional)">
+          <div class="row">
+            <div class="input-field">
+              <label for="survey[options][]">Option 4</label>
+              <input name="survey[options][]" type="text">
             </div>
           </div>
-
+        </div>
+        <button type="button" class="btn" id="add-option">Add Option</button>
+        <br><br>
+        <div class='row'>
+          <div>
+            <label for="survey[time]">Do you want this to expire?</label>
+            <input name="survey[time]" type="number" min="0" placeholder="Minutes for participants to take">
+          </div>
         </div>
       </div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
-      <script src="/socket.io/socket.io.js"></script>
-      <script src="/client.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-      <link rel="stylesheet" href="style.css" type="text/css">
-  </body>
+      <input type="submit" class="btn">
+    </form>
+  </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+<script src="admin.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css" type="text/css">
+</body>
 </html>
