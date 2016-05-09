@@ -4,6 +4,7 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const countVotes = require('./src/count-votes.js');
+const SurveyEngine = require('./src/survey-engine.js');
 
 const app = express();
 let port = process.env.PORT || 3000;

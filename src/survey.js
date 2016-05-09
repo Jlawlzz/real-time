@@ -1,7 +1,10 @@
-"use-strict"
+'use strict'
 
-let Survey = function(id, owner, questions){
+let Survey = function(id, owner, params){
   this.id = id;
   this.owner = owner;
-  this.questions = questions;
+  this.question = params.question;
+  this.answers = params.answers;
 }
+
+module.exports = Survey;

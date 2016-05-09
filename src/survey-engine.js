@@ -1,39 +1,34 @@
-"use-strict";
+'use strict';
 
-let Survey = require('./survey');
+const crypt = require('crypto');
+const Survey = require('./survey');
+const SurveyStore = require('./survey-store')
 
-let simpleCrypt = require('simple-crypt').Crypt;
-
-let SurveyEngine = {
+const SurveyEngine = {
 
   createSurvey(req, io){
 
     let surveyId = this.createSurveyId();
     let adminId = this.createAdminId();
-    let questions = this.parseQuestions()
+    let questions = this.parseQuestions(req.body);
 
-    survey = new Survey(surveyId, adminId, questions);
+    let survey = new Survey(surveyId, adminId, questions);
+
+    SurveyStore.addSurvey(survey);
   },
 
   createSurveyId(){
-    getId(10);
+    return crypt.randomBytes(10).toString('hex');
   },
 
   createAdminId(){
-    getId(8)
+    return crypt.randomBytes(8).toString('hex');
   },
 
-  parseQuestions(){
-
+  parseQuestions(body){
+    return {'question': body.survey.question, 'answers': body.survey.options}
   }
 
 }
-
-function getId(size){
-  Crypt.make(crypto.randomBytes(), function (err, encrypter){
-    return encrypter
-  });
-};
-
 
 module.exports = SurveyEngine;
