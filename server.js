@@ -58,6 +58,7 @@ app.get('/vote', function (req, res){
 
 app.post('/admin', function (req, res) {
   SurveyEngine.createSurvey(req, io);
+  res.render('survey-links');
 });
 
 module.exports = server;
