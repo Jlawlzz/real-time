@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/Jlawlzz/real-time#readme",
   "dependencies": {
+    "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "jquery": "^2.2.3",
     "lodash": "^4.11.1",
     "socket.io": "^1.4.5"
   },

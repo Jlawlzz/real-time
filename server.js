@@ -3,6 +3,8 @@
 const http = require('http');
 const express = require('express');
 
+const countVotes = require('./src/count-votes.js');
+
 const app = express();
 let port = process.env.PORT || 3000;
 let votes = {};
@@ -11,6 +13,9 @@ let server = http.createServer(app)
                  .listen(port, function() {
                    console.log('Listening on port' + port + '.');
                  });
+
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 const socketIo = require('socket.io');
 const io = socketIo(server);
@@ -41,20 +46,11 @@ io.on('connection', function(socket) {
 app.use(express.static('public'));
 
 app.get('/', function (req, res){
-  res.sendFile(__dirname + '/public/index.html');
+  res.render('home');
 });
 
-function countVotes(votes) {
-  let voteCount = {
-    A:0,
-    B:0,
-    C:0,
-    D:0
-  };
-  for(var vote in votes){
-    voteCount[votes[vote]]++
-  }
-  return voteCount;
-}
+app.get('/vote', function (req, res){
+  res.render('index');
+});
 
 module.exports = server;
