@@ -2,7 +2,7 @@
 
 const http = require('http');
 const express = require('express');
-
+const bodyParser = require('body-parser');
 const countVotes = require('./src/count-votes.js');
 
 const app = express();
@@ -16,6 +16,8 @@ let server = http.createServer(app)
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 const socketIo = require('socket.io');
 const io = socketIo(server);
@@ -54,7 +56,7 @@ app.get('/vote', function (req, res){
 });
 
 app.post('/admin', function (req, res) {
-  console.log(res)
+  SurveyEngine.createSurvey(req, io);
 });
 
 module.exports = server;
