@@ -40,7 +40,7 @@ io.on('connection', function(socket) {
 
   socket.on('message', function(channel, message){
     if(channel === 'voteCast') {
-      let survey = SurveyStore.getSurvey(message.survey);
+      let survey = SurveyStore.getSurveyPublic(message.survey);
       survey.answers[message.vote] += 1;
       io.sockets.emit('updateVote', survey);
     };
@@ -63,13 +63,30 @@ app.post('/admin', function (req, res) {
 });
 
 app.get('/survey/:id', function(req, res) {
-  let survey = SurveyStore.getSurvey(req.params.id)
-  res.render('render-survey', {survey: survey})
+  let survey = SurveyStore.getSurveyPublic(req.params.id)
+  if(survey){
+    res.render('render-survey-public', {survey: survey})
+  } else {
+    res.redirect('/')
+  }
+});
+
+app.get('/survey/private/:id', function(req, res) {
+  let survey = SurveyStore.getSurveyPrivate(req.params.id)
+  if(survey){
+    res.render('render-survey-private', {survey: survey})
+  } else {
+    res.redirect('/')
+  }
 });
 
 app.get('/admin/:id', function(req, res) {
   let survey = SurveyStore.getSurveyViaAdmin(req.params.id)
-  res.render('render-result', {survey: survey})
+  if(survey){
+    res.render('render-result', {survey: survey})
+  } else {
+    res.redirect('/')
+  }
 });
 
 module.exports = server;
