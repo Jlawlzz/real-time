@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <title>Ask the Audience</title>
+</head>
+<body>
+  <div class='app-window'>
+    <div class="title">
+      <h1>Ask the Audience</h1>
+    </div>
+  </br>
+    <div>
+      <h2> results link (for you): </h2>
+
+      <input type="text" value="/admin/<%= survey.owner %>/<%= survey.id %>" >
+
+      <h2> survey link (for them): </h2>
+
+      <input type="text" value="/survey/<%= survey.id %>" >
+
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css" type="text/css">
+</body>
+</html>
