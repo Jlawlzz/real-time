@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <title>Ask the Audience</title>
+</head>
+<body>
+  <div class='app-window'>
+    <div class="title">
+      <h1>Ask the Audience</h1>
+    </div>
+  </br>
+    <h1>Results:</h1>
+    <div class="survey" id="<%= survey.id %>">
+      <h2> Survey: </h2>
+
+      <div class='choices' id="choices">
+        <h3> <%= survey.question %> </h3>
+        <% for (var answer in survey.answers) { %>
+          <h4><%= answer %>: <%= survey.answers[answer] %> </h4>
+        </br>
+        <% } %>
+      </div>
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+<script src="../socket.io/socket.io.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</body>
+</html>

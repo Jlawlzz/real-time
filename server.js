@@ -63,10 +63,13 @@ app.post('/admin', function (req, res) {
 });
 
 app.get('/survey/:id', function(req, res) {
-  console.log(req.params)
   let survey = SurveyStore.getSurvey(req.params.id)
-  console.log('next step', survey)
   res.render('render-survey', {survey: survey})
+});
+
+app.get('/admin/:id', function(req, res) {
+  let survey = SurveyStore.getSurveyViaAdmin(req.params.id)
+  res.render('render-result', {survey: survey})
 });
 
 module.exports = server;
