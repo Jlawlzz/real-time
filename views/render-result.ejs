@@ -11,8 +11,6 @@
   </br>
     <h1>Results:</h1>
     <div class="survey" id="<%= survey.id %>">
-      <h2> Survey: </h2>
-
       <h3> <%= survey.question %> </h3>
       <div class='results' id="results">
         <% for (var answer in survey.answers) { %>
@@ -21,6 +19,7 @@
         <% } %>
       </div>
     </div>
+    <button id="close">close vote</button>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>

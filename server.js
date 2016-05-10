@@ -45,6 +45,12 @@ io.on('connection', function(socket) {
       survey.answers[message.vote] += 1;
       io.sockets.emit('updateVote', survey);
     };
+
+    if(channel === 'voteClose') {
+      let survey = SurveyStore.getSurveyPublic(message);
+      survey.status = 'closed'
+      io.sockets.emit('closeVote', survey);
+    };
   });
 });
 
