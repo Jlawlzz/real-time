@@ -10,6 +10,12 @@ const SurveyStore = {
 
   getSurvey(id){
     return store[id];
+  },
+
+  getSurveyViaAdmin(id){
+    for (var survey in store) {
+      if (store[survey].owner === id){ return store[survey] }
+    }
   }
 }
 
