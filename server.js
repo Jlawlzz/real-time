@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const countVotes = require('./src/count-votes.js');
 const SurveyEngine = require('./src/survey-engine.js');
+const SurveyStore = require('./src/survey-store.js')
 
 const app = express();
 let port = process.env.PORT || 3000;
@@ -39,9 +40,7 @@ io.on('connection', function(socket) {
 
   socket.on('message', function(channel, message){
     if(channel === 'voteCast') {
-      socket.emit('lastVote', message);
-      votes[socket.id] = message;
-      io.sockets.emit('voteCount', countVotes(votes));
+      console.log(message)
     };
   });
 });
@@ -57,8 +56,15 @@ app.get('/vote', function (req, res){
 });
 
 app.post('/admin', function (req, res) {
-  SurveyEngine.createSurvey(req, io);
-  res.render('survey-links');
+  let survey = SurveyEngine.createSurvey(req, io);
+  res.render('survey-links', {survey: survey});
+});
+
+app.get('/survey/:id', function(req, res) {
+  console.log(req.params)
+  let survey = SurveyStore.getSurvey(req.params.id)
+  console.log('next step', survey)
+  res.render('render-survey', {survey: survey})
 });
 
 module.exports = server;

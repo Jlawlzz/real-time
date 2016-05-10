@@ -9,20 +9,21 @@
       <h1>Ask the Audience</h1>
     </div>
   </br>
-    <div>
-      <h2> results link (for you): </h2>
+    <div class="survey" id="<%= survey.id %>">
+      <h2> Survey: </h2>
 
-      <input type="text" value="/admin/<%= survey.owner %>/<%= survey.id %>" >
-
-      <h2> survey link (for them): </h2>
-
-      <input type="text" value="/survey/<%= survey.id %>" >
-
+      <div class='choices' id="choices">
+        <h3> <%= survey.question %> </h3>
+        <% survey.answers.forEach(function(answer){ %>
+          <button class='btn answers'> <%= answer %> </button>
+        <% }) %>
+      </div>
     </div>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+<script src="../client.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
 </body>
 </html>

@@ -6,11 +6,13 @@ let connectionCount = document.getElementById('connection-count');
 let statusMessage = document.getElementById('status-message');
 let votesDisplay = document.getElementById('votes-display');
 let lastVote = document.getElementById('last-vote');
-let buttons = document.querySelectorAll('#choices button');
+let answers = document.querySelectorAll('.answers');
+let surveyId = $('.survey');
 
 for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener('click', function(){
-    socket.send('voteCast', this.innerText);
+  answers[i].addEventListener('click', function(){
+    console.log(this)
+    socket.send('voteCast', {survey: surveyId, vote: this.innerText);
   });
 }
 

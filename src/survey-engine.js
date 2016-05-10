@@ -15,6 +15,8 @@ const SurveyEngine = {
     let survey = new Survey(surveyId, adminId, questions);
 
     SurveyStore.addSurvey(survey);
+
+    return survey
   },
 
   createSurveyId(){
