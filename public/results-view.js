@@ -3,7 +3,7 @@
 let socket = io();
 
 socket.on('updateVote', function (survey) {
-  $('#choices').html(renderResults(survey))
+  $('#results').html(renderResults(survey))
 });
 
 function renderResults(survey){

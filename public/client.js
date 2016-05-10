@@ -10,7 +10,10 @@ let answers = document.querySelectorAll('.answers');
 let surveyId = $('.survey').attr('id');
 let survey = $('.survey');
 let thankYou = $('#thank-you');
-thankYou.hide();
+
+$(document).on('ready', function(){
+  thankYou.hide();
+})
 
 for (var i = 0; i < answers.length; i++) {
   answers[i].addEventListener('click', function(){
@@ -18,4 +21,17 @@ for (var i = 0; i < answers.length; i++) {
     survey.hide()
     thankYou.show()
   });
+}
+
+socket.on('updateVote', function (survey) {
+  $('#results').html(renderResults(survey))
+});
+
+function renderResults(survey){
+  let newResults = ''
+  for (var answer in survey.answers) {
+    newResults = newResults + "<h4>" + answer + " votes: " + survey.answers[answer] +  "</h4></br>"
+  }
+  console.log(newResults)
+  return newResults
 }

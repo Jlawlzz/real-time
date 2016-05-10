@@ -8,8 +8,15 @@ const SurveyStore = {
     store[survey.id] = survey;
   },
 
-  getSurvey(id){
+  getSurveyPublic(id){
     return store[id];
+  },
+
+
+  getSurveyPrivate(id){
+    for (var survey in store) {
+      if (store[survey].privateId === id){ return store[survey] }
+    }
   },
 
   getSurveyViaAdmin(id){
@@ -17,6 +24,7 @@ const SurveyStore = {
       if (store[survey].owner === id){ return store[survey] }
     }
   }
+
 }
 
 module.exports = SurveyStore;

@@ -8,11 +8,12 @@ const SurveyEngine = {
 
   createSurvey(req, io){
 
-    let surveyId = this.createSurveyId();
+    let publicId = this.createSurveyId();
+    let privateId = this.createSurveyId();
     let adminId = this.createAdminId();
     let questions = this.parseQuestions(req.body);
 
-    let survey = new Survey(surveyId, adminId, questions);
+    let survey = new Survey(publicId, privateId, adminId, questions);
 
     SurveyStore.addSurvey(survey);
 
