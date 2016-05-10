@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const countVotes = require('./src/count-votes.js');
 const SurveyEngine = require('./src/survey-engine.js');
 const SurveyStore = require('./src/survey-store.js')
+const Router = require('./src/router.js')
 
 const app = express();
 let port = process.env.PORT || 3000;
@@ -50,43 +51,27 @@ io.on('connection', function(socket) {
 app.use(express.static('public'));
 
 app.get('/', function (req, res){
-  res.render('home');
+  Router.getHome(req, res);
 });
 
 app.get('/vote', function (req, res){
-  res.render('index');
+  Router.getIndex(req, res);
 });
 
 app.post('/admin', function (req, res) {
-  let survey = SurveyEngine.createSurvey(req, io);
-  res.render('survey-links', {survey: survey});
+  Router.postNewSurvey(req, res, io)
 });
 
 app.get('/survey/:id', function(req, res) {
-  let survey = SurveyStore.getSurveyPublic(req.params.id)
-  if(survey){
-    res.render('render-survey-public', {survey: survey})
-  } else {
-    res.redirect('/')
-  }
+  Router.getPublicSurvey(req, res);
 });
 
 app.get('/survey/private/:id', function(req, res) {
-  let survey = SurveyStore.getSurveyPrivate(req.params.id)
-  if(survey){
-    res.render('render-survey-private', {survey: survey})
-  } else {
-    res.redirect('/')
-  }
+  Router.getPrivateSurvey(req, res);
 });
 
 app.get('/admin/:id', function(req, res) {
-  let survey = SurveyStore.getSurveyViaAdmin(req.params.id)
-  if(survey){
-    res.render('render-result', {survey: survey})
-  } else {
-    res.redirect('/')
-  }
+  Router.getAdminDash(req, res)
 });
 
 module.exports = server;
