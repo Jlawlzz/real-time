@@ -28,7 +28,15 @@ const SurveyEngine = {
   },
 
   parseQuestions(body){
-    return {'question': body.survey.question, 'answers': body.survey.options}
+    return {'question': body.survey.question, 'answers': this.createVotes(body.survey.options)}
+  },
+
+  createVotes(options){
+    let answers = {}
+    options.forEach(function(option){
+      answers[option] = 0
+    })
+    return answers
   }
 
 }

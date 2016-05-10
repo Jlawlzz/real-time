@@ -14,14 +14,19 @@
 
       <div class='choices' id="choices">
         <h3> <%= survey.question %> </h3>
-        <% survey.answers.forEach(function(answer){ %>
+        <% for (var answer in survey.answers) { %>
           <button class='btn answers'> <%= answer %> </button>
-        <% }) %>
+        <% } %>
       </div>
+    </div>
+
+    <div id='thank-you'>
+      <h3>Your vote has been sent, thank you!</h3>
     </div>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+<script src="../socket.io/socket.io.js"></script>
 <script src="../client.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 <link rel="stylesheet" href="../style.css" type="text/css">

@@ -41,6 +41,8 @@ io.on('connection', function(socket) {
   socket.on('message', function(channel, message){
     if(channel === 'voteCast') {
       console.log(message)
+      let survey = SurveyStore.getSurvey(message.survey);
+      survey.answers[message.vote] += 1;
     };
   });
 });
