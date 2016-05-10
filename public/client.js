@@ -24,7 +24,9 @@ for (var i = 0; i < answers.length; i++) {
 }
 
 socket.on('updateVote', function (survey) {
-  $('#results').html(renderResults(survey))
+  if( survey.id == $('.survey').attr('id')){
+    $('#results').html(renderResults(survey))
+  }
 });
 
 function renderResults(survey){
@@ -32,6 +34,5 @@ function renderResults(survey){
   for (var answer in survey.answers) {
     newResults = newResults + "<h4>" + answer + " votes: " + survey.answers[answer] +  "</h4></br>"
   }
-  console.log(newResults)
   return newResults
 }

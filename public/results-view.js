@@ -3,7 +3,9 @@
 let socket = io();
 
 socket.on('updateVote', function (survey) {
-  $('#results').html(renderResults(survey))
+  if( survey.id == $('.survey').attr('id')){
+    $('#results').html(renderResults(survey))
+  }
 });
 
 function renderResults(survey){
