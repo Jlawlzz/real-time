@@ -2,6 +2,10 @@
 
 let socket = io();
 
+$('#close').on('click', function(){
+  socket.send('voteClose', $('.survey').attr('id'));
+});
+
 socket.on('updateVote', function (survey) {
   if( survey.id == $('.survey').attr('id')){
     $('#results').html(renderResults(survey))
