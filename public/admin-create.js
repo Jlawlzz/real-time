@@ -8,7 +8,6 @@ $(document).ready(function(){
   $('#new-poll-form').hide();
 });
 
-
 createPoleButton.addEventListener('click', function(){
   $('#new-poll-form').toggle()
 });
