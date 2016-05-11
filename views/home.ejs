@@ -46,16 +46,14 @@
                 <input name="survey[options][]" type="text">
               </div>
             </div>
-          </div>
-          <button type="button" onClick="addOption()" class="btn" id="add-option">Add Option</button>
-          <br><br>
-          <div class='row'>
+            <div class='row'>
             <div>
               <label for="survey[time]">Optional Expiration Timer</label>
-              <input name="survey[time]" type="number" min="0" placeholder="Closes in # minutes (optional)">
+              <input name="survey[time]" type="number" min="0" placeholder="minutes until survey closes">
             </div>
-
           </div>
+          <button type="button" class="btn" id="add-option">Add Option</button>
+          <br><br>
           <input type="submit" class="btn">
         </form>
       </div>

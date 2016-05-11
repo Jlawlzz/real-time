@@ -12,7 +12,6 @@ const SurveyStore = {
     return store[id];
   },
 
-
   getSurveyPrivate(id){
     for (var survey in store) {
       if (store[survey].privateId === id){ return store[survey] }

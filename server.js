@@ -26,24 +26,18 @@ const socketIo = require('socket.io');
 const io = socketIo(server);
 
 io.on('connection', function(socket) {
-  console.log('A user has connected.', io.engine.clientsCount);
-
-  io.sockets.emit('usersConnected', io.engine.clientsCount);
-
-  socket.emit('statusMessage', 'You have connected');
-
-  socket.on('disconnect', function () {
-    console.log('A user has disconected', io.engine.clientsCount);
-    delete votes[socket.id];
-    console.log(votes);
-    io.sockets.emit('userConnection', io.engine.clientsCount);
-  });
 
   socket.on('message', function(channel, message){
     if(channel === 'voteCast') {
       let survey = SurveyStore.getSurveyPublic(message.survey);
-      survey.answers[message.vote] += 1;
-      io.sockets.emit('updateVote', survey);
+      survey.checkExpiration();
+      if (survey.status === 'open') {
+        survey.answers[message.vote] += 1;
+        io.sockets.emit('updateVote', survey);
+      } else {
+        survey.status = 'closed'
+        io.sockets.emit('closeVote', survey);
+      }
     };
 
     if(channel === 'voteClose') {
@@ -58,10 +52,6 @@ app.use(express.static('public'));
 
 app.get('/', function (req, res){
   Router.getHome(req, res);
-});
-
-app.get('/vote', function (req, res){
-  Router.getIndex(req, res);
 });
 
 app.post('/admin', function (req, res) {
