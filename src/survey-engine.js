@@ -11,9 +11,10 @@ const SurveyEngine = {
     let publicId = this.createSurveyId();
     let privateId = this.createSurveyId();
     let adminId = this.createAdminId();
+    let expiration = this.parseTime(req.body);
     let questions = this.parseQuestions(req.body);
 
-    let survey = new Survey(publicId, privateId, adminId, questions);
+    let survey = new Survey(publicId, privateId, adminId, questions, expiration);
 
     SurveyStore.addSurvey(survey);
 
@@ -30,6 +31,14 @@ const SurveyEngine = {
 
   parseQuestions(body){
     return {'question': body.survey.question, 'answers': this.createVotes(body.survey.options)}
+  },
+
+  parseTime(body){
+    if (body.survey.time){
+      return (body.survey.time * 60 * 1000)
+    } else {
+      return null
+    }
   },
 
   createVotes(options){
