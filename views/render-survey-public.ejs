@@ -11,26 +11,25 @@
   </br>
   <div class="survey-window" id="<%= survey.status %>">
     <div class="survey" id="<%= survey.id %>">
-      <h2> Survey: </h2>
-
-      <div class='choices' id="choices">
-        <h3> <%= survey.question %> </h3>
-        <% for (var answer in survey.answers) { %>
-          <button class='btn answers'> <%= answer %> </button>
-        <% } %>
-      </div>
+          <div class='choices' id="choices">
+            <h3> <%= survey.question %> </h3>
+            <% for (var answer in survey.answers) { %>
+              <div class="form-group">
+              <button class='btn btn-info answers'> <%= answer %> </button>
+            </div>
+            <% } %>
+        </div>
     </div>
 
     <div id='thank-you'>
       <h3>Your vote has been sent, thank you!</h3>
+      </div>
     </div>
-  </div>
-
+    <br></br>
     <h1>Results:</h1>
     <div class="survey-results" id="<%= survey.id %>">
-      <h2> Survey: </h2>
-
       <h3> <%= survey.question %> </h3>
+      <br></br>
       <div class='results' id="results">
         <% for (var answer in survey.answers) { %>
           <h4><%= answer %>: <%= survey.answers[answer] %> </h4>

@@ -5,21 +5,20 @@
 </head>
 <body>
   <div class='app-window'>
-    <div class="survey-window" id="<%= survey.status %>">
-
     <div class="title">
       <h1>Ask the Audience</h1>
     </div>
+    <div class="survey-window" id="<%= survey.status %>">
   </br>
     <div class="survey" id="<%= survey.id %>">
-      <h2> Survey: </h2>
-
-      <div class='choices' id="choices">
-        <h3> <%= survey.question %> </h3>
-        <% for (var answer in survey.answers) { %>
-          <button class='btn answers'> <%= answer %> </button>
-        <% } %>
-      </div>
+          <div class='choices' id="choices">
+            <h3> <%= survey.question %> </h3>
+            <% for (var answer in survey.answers) { %>
+              <div class="form-group">
+              <button class='btn btn-info answers'> <%= answer %> </button>
+            </div>
+            <% } %>
+        </div>
     </div>
 
     <div id='thank-you'>

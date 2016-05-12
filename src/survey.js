@@ -16,7 +16,6 @@ let Survey = function(publicId, privateId, owner, params, expiration, timeNow){
 Survey.prototype.checkExpiration = function(){
   let time = new Date();
   if(this.expiration != null && ((time.getTime() - this.createdAt) >= this.expiration)){
-    console.log('here')
     this.status = 'closed';
   }
 }

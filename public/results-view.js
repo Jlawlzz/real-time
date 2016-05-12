@@ -3,6 +3,7 @@
 let socket = io();
 
 $('#close').on('click', function(){
+  $('#close').hide();
   socket.send('voteClose', $('.survey').attr('id'));
 });
 
