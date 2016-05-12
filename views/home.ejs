@@ -10,7 +10,7 @@
     </div>
   </br>
 
-  <button class="btn large" id="create-poll"> Create a Pole </button>
+  <button class="btn btn-success large" id="create-poll"> Create a Pole </button>
 
   <div id="new-poll-form">
 
@@ -18,45 +18,37 @@
         <form action="/admin" method="POST" name="survey" id="survey-form" class="col s6 offset-s3">
           <div class="row">
             <div class="input-field">
-              <label for="survey[question]">Question</label>
-              <input name="survey[question]" type="text">
+              <label for="survey[question]">Question:</label>
+              <input class="form-control" name="survey[question]" type="text">
             </div>
           </div>
+          <br></br>
           <div class="options-list">
             <div class="row">
               <div class="input-field">
                 <label for="survey[options][]">Option 1</label>
-                <input name="survey[options][]" type="text">
+                <input class="form-control" name="survey[options][]" type="text">
               </div>
             </div>
             <div class="row">
               <div class="input-field">
                 <label for="survey[options][]">Option 2</label>
-                <input name="survey[options][]" type="text">
-              </div>
-            <div class="row">
-              <div class="input-field">
-                <label for="survey[options][]">Option 3</label>
-                <input name="survey[options][]" type="text">
+                <input class="form-control" name="survey[options][]" type="text">
               </div>
             </div>
-            <div class="row">
-              <div class="input-field">
-                <label for="survey[options][]">Option 4</label>
-                <input name="survey[options][]" type="text">
-              </div>
-            </div>
+          </div>
+          <br></br>
             <div class='row'>
             <div>
               <label for="survey[time]">Optional Expiration Timer</label>
-              <input name="survey[time]" type="number" min="0" placeholder="minutes until survey closes">
+              <input class="form-control"  name="survey[time]" type="number" min="0" placeholder="minutes until survey closes">
             </div>
           </div>
-          <button type="button" class="btn" id="add-option">Add Option</button>
-          <br><br>
-          <input type="submit" class="btn">
+        <br></br>
+          <button type="button" class="btn btn-warning" id="add-option">Add Option</button>
+        <br></br>
+          <input type="submit" class="btn btn-primary">
         </form>
-      </div>
 
   </div>
 </div>
