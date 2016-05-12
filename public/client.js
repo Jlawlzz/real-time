@@ -2,10 +2,6 @@
 
 let socket = io();
 
-let connectionCount = document.getElementById('connection-count');
-let statusMessage = document.getElementById('status-message');
-let votesDisplay = document.getElementById('votes-display');
-let lastVote = document.getElementById('last-vote');
 let answers = document.querySelectorAll('.answers');
 let surveyId = $('.survey').attr('id');
 let survey = $('.survey');

@@ -12,13 +12,17 @@ const SurveyEngine = {
     let privateId = this.createSurveyId();
     let adminId = this.createAdminId();
     let expiration = this.parseTime(req.body);
-    let questions = this.parseQuestions(req.body);
+    let question = this.parseQuestions(req.body);
 
-    let survey = new Survey(publicId, privateId, adminId, questions, expiration);
+    if ( question['question'] && question['answers'] ){
+      let survey = new Survey(publicId, privateId, adminId, question, expiration);
+      SurveyStore.addSurvey(survey);
+      return survey;
 
-    SurveyStore.addSurvey(survey);
+    } else {
+      return null;
 
-    return survey
+    }
   },
 
   createSurveyId(){
@@ -35,18 +39,21 @@ const SurveyEngine = {
 
   parseTime(body){
     if (body.survey.time){
-      return (body.survey.time * 60 * 1000)
+      return (body.survey.time * 60 * 1000);
     } else {
-      return null
+      return null;
     }
   },
 
   createVotes(options){
-    let answers = {}
-    options.forEach(function(option){
-      answers[option] = 0
-    })
-    return answers
+
+    if(options.indexOf('') >= 0){
+      return null;
+    } else {
+      let answers = {};
+      options.forEach( option => { answers[option] = 0 });
+      return answers;
+    }
   }
 
 }
