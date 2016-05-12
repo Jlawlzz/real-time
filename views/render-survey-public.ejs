@@ -27,7 +27,6 @@
     </div>
     <br></br>
     <h1>Results:</h1>
-    <div class="survey" id="<%= survey.id %>">
       <h3> Question: <%= survey.question %> </h3>
       <div class='results' id="results">
         <% for (var answer in survey.answers) { %>
@@ -35,7 +34,6 @@
           <h5>votes: <%= survey.answers[answer] %></h5>
         <% } %>
       </div>
-    </div>
     </div>
 
 </div>
