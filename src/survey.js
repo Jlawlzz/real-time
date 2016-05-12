@@ -1,6 +1,6 @@
 'use strict'
 
-let Survey = function(publicId, privateId, owner, params, expiration, timeNow){
+let Survey = function(publicId, privateId, owner, params, expiration){
   let time = new Date();
 
   this.id = publicId;

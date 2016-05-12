@@ -1,7 +1,6 @@
 "use strict";
 
-let createPoleButton = document.getElementById('create-poll')
-let poleForm = document.getElementById('new-poll-form')
+let createPoleButton = document.getElementById('create-poll');
 let options = 2 ;
 
 $(document).ready(function(){
@@ -9,11 +8,12 @@ $(document).ready(function(){
 });
 
 createPoleButton.addEventListener('click', function(){
-  $('#new-poll-form').toggle()
+  $('#new-poll-form').toggle();
+  $('#new-poll-button').hide();
 });
 
 $('#add-option').on('click', function(){
-  console.log('here')
+  console.log('here');
       options += 1;
       $('.options-list').append(
           `<div class="row">
@@ -22,5 +22,5 @@ $('#add-option').on('click', function(){
               <input name="survey[options][]" type="text" class="form-control">
             </div>
           </div>`
-      )
+      );
 });

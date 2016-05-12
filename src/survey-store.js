@@ -1,7 +1,7 @@
 'use strict';
 
 let store = {}
-console.log('newStore')
+
 const SurveyStore = {
 
   addSurvey(survey){

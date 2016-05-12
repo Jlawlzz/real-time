@@ -3,7 +3,7 @@
 const SurveyEngine = require('./survey-engine.js');
 const SurveyStore = require('./survey-store.js')
 
-const Router = {
+const PathRouter = {
 
   getHome(req, res){
     res.render('home');
@@ -12,7 +12,7 @@ const Router = {
   getPublicSurvey(req, res){
     let survey = SurveyStore.getSurveyPublic(req.params.id);
     if(survey){
-      survey.checkExpiration()
+      survey.checkExpiration();
       res.render('render-survey-public', {survey: survey});
     } else {
       res.redirect('/');
@@ -22,7 +22,7 @@ const Router = {
   getPrivateSurvey(req, res){
     let survey = SurveyStore.getSurveyPrivate(req.params.id);
     if(survey){
-      survey.checkExpiration()
+      survey.checkExpiration();
       res.render('render-survey-private', {survey: survey});
     } else {
       res.redirect('/');
@@ -32,21 +32,32 @@ const Router = {
   getAdminDash(req, res){
     let survey = SurveyStore.getSurveyViaAdmin(req.params.id)
     if(survey){
-      survey.checkExpiration()
+      survey.checkExpiration();
       res.render('render-result', {survey: survey})
     } else {
-      res.redirect('/')
+      res.redirect('/');
     }
   },
 
-  postNewSurvey(req, res, io){
-    let survey = SurveyEngine.createSurvey(req, io);
-    survey.checkExpiration()
-    res.render('survey-links', {survey: survey});
+  postNewSurvey(req, res){
+    let survey = SurveyEngine.createSurvey(req);
+    if(survey){
+      res.redirect('/admin/links/' + survey.id);
+    } else {
+      res.redirect('/');
+    }
+  },
+
+  getAdminLinks(req, res){
+    let survey = SurveyStore.getSurveyPublic(req.url.split('/')[3]);
+    if(survey){
+      survey.checkExpiration();
+      res.render('render-survey-links', { survey: survey } );
+    } else {
+      res.redirect('/');
+    }
   }
-
-
 
 }
 
-module.exports = Router;
+module.exports = PathRouter;
