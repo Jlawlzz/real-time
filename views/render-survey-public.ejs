@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
 <head>
-  <title>Ask the Audience</title>
+  <title>Ask Questions</title>
 </head>
 <body>
   <div class='app-window'>
     <div class="title">
-      <h1>Ask the Audience</h1>
+      <h1>Ask Questions</h1>
     </div>
   </br>
   <div class="survey-window" id="<%= survey.status %>">
@@ -27,15 +27,15 @@
     </div>
     <br></br>
     <h1>Results:</h1>
-    <div class="survey-results" id="<%= survey.id %>">
-      <h3> <%= survey.question %> </h3>
-      <br></br>
+    <div class="survey" id="<%= survey.id %>">
+      <h3> Question: <%= survey.question %> </h3>
       <div class='results' id="results">
         <% for (var answer in survey.answers) { %>
-          <h4><%= answer %>: <%= survey.answers[answer] %> </h4>
-        </br>
+          <h4>answer: <%= answer %></h4>
+          <h5>votes: <%= survey.answers[answer] %></h5>
         <% } %>
       </div>
+    </div>
     </div>
 
 </div>

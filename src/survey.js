@@ -9,7 +9,7 @@ let Survey = function(publicId, privateId, owner, params, expiration){
   this.question = params.question;
   this.answers = params.answers;
   this.status = "open";
-  this.expiration = expiration;
+  this.expiration = Math.abs(expiration);
   this.createdAt = time.getTime();
 }
 
